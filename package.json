@@ -1,0 +1,27 @@
+{
+  "name": "myblog",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "vuepress build",
+    "deploy": "bash deploy.sh"
+  },
+  "devDependencies": {
+    "@vuepress-reco/vuepress-plugin-bgm-player": "^1.1.4",
+    "vuepress": "1.9.7",
+    "vuepress-theme-reco": "1.6.14"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "leancloud-storage": "^4.11.1",
+    "touch": "^3.1.0",
+    "valine": "^1.5.0",
+    "vue-template-compiler": "^2.7.7",
+    "vuepress-plugin-helper-live2d": "^1.0.2",
+    "vuepress-plugin-music-bar": "^3.7.6"
+  }
+}
