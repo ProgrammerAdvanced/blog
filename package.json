@@ -10,18 +10,26 @@
   },
   "devDependencies": {
     "@vuepress-reco/vuepress-plugin-bgm-player": "^1.1.4",
+    "@vuepress/plugin-back-to-top": "^2.0.0-beta.49",
+    "@vuepress/plugin-medium-zoom": "^2.0.0-beta.49",
     "vuepress": "1.9.7",
+    "vuepress-plugin-baidu-autopush": "^1.0.1",
     "vuepress-theme-reco": "1.6.14"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@vssue/vuepress-plugin-vssue": "^1.4.8",
     "leancloud-storage": "^4.11.1",
     "touch": "^3.1.0",
     "valine": "^1.5.0",
     "vue-template-compiler": "^2.7.7",
+    "vuepress-plugin-code-copy": "^1.0.6",
+    "vuepress-plugin-copyright": "^1.0.2",
     "vuepress-plugin-helper-live2d": "^1.0.2",
-    "vuepress-plugin-music-bar": "^3.7.6"
+    "vuepress-plugin-music-bar": "^3.7.6",
+    "vuepress-plugin-sitemap": "^2.3.1",
+    "yarn": "^1.22.19"
   }
 }

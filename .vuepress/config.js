@@ -26,6 +26,33 @@ module.exports = {
         ["meta", {name: "apple-mobile-web-app-capable", content: "yes"}]
     ],
     plugins: [
+        ['@vssue/vuepress-plugin-vssue', {
+            // 设置 `platform` 而不是 `api`
+            platform: 'github',
+
+            // 其他的 Vssue 配置
+            owner: 'OWNER_OF_REPO',
+            repo: 'NAME_OF_REPO',
+            clientId: 'YOUR_CLIENT_ID',
+            clientSecret: 'YOUR_CLIENT_SECRET',
+        }],
+        ['copyright', {
+            noCopy: true, // 选中的文字将无法被复制
+            minLength: 100, // 如果长度超过 100 个字符
+        }],
+        ['sitemap', {
+            hostname: 'https://pro.tech'
+        }],
+        [['vuepress-plugin-code-copy', true]],
+        ['@vuepress/back-to-top', true],
+        ['@vuepress/medium-zoom', {
+            selector: 'img',
+            // See: https://github.com/francoischalifour/medium-zoom#options
+            options: {
+                margin: 16
+            }
+        }],
+        ['vuepress-plugin-baidu-autopush']
     ],
     themeConfig: {
         // repo: "realpdai/tech-arch-doc",

@@ -2,7 +2,7 @@
 home: true
 heroImage: /_images/title.webp
 actionText: 快速开始 →
-actionLink: /md/java/basic/java-basic-oop.md
+actionLink: /blogs/qmq/kafka/Kafka生产者写入数据.md
 features:
 - title: 基础
   details: 面试问题归类整理，先理论再实践。
