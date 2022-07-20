@@ -5,9 +5,14 @@ module.exports = {
     base: "/",
     markdown: {
         lineNumbers: true,
-        externalLinks: {
-            target: '_blank', rel: 'noopener noreferrer'
+        toc: {
+            includeLevel:[1, 2, 3, 4]
         }
+        // externalLinks: {
+        //     target: '_blank', rel: 'noopener noreferrer'
+        // },
+        // 侧边栏深度配置
+        // extractHeaders: ['h2', 'h3', 'h4', 'h5', 'h6']
     },
     locales: {
         "/": {
@@ -56,21 +61,42 @@ module.exports = {
     ],
     themeConfig: {
         // repo: "realpdai/tech-arch-doc",
-        docsRepo: "realpdai/tech-arch-doc",
+        // docsRepo: "realpdai/tech-arch-doc",
         // logo: "/logo.png",
-        editLinks: true,
-        sidebarDepth:0,
-        locales: {
-            "/": {
-                label: "简体中文",
-                selectText: "Languages",
-                editLinkText: "在 GitHub 上编辑此页",
-                lastUpdated: "上次更新",
-                nav: [
-                ],
-                sidebar: {
+        // editLinks: true,
+        // sidebarDepth:0,
+        // 侧边栏
+        sidebar: {
+            '/blogs/qmq/kafka/': [
+                {
+                    title: '目录',
+                    children: [
+                        'Kafka生产者写入数据'
+                    ]
                 }
+            ]
+        },
+        // 右上目录
+        nav: [
+            { text: '首页', link: '/'},
+            { text: '首页', 
+                items: [
+                    { text: 'html', link: '/'},
+                    { text: 'css', link: '/'}
+                ]
             }
-        }
+        ],
+        // locales: {
+        //     "/": {
+        //         label: "简体中文",
+        //         selectText: "Languages",
+        //         editLinkText: "在 GitHub 上编辑此页",
+        //         lastUpdated: "上次更新",
+        //         nav: [
+        //         ],
+        //         sidebar: {
+        //         }
+        //     }
+        // }
     }
 };
