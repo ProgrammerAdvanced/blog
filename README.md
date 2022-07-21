@@ -1,7 +1,7 @@
 ---
 home: true
 heroImage: /_images/title.webp
-actionText: 快速开始 →
+actionText: 快速开始
 actionLink: /blogs/qmq/kafka/Kafka生产者写入数据.md
 features:
 - title: 基础

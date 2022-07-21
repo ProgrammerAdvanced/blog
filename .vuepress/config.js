@@ -68,10 +68,17 @@ module.exports = {
         // 侧边栏
         sidebar: {
             '/blogs/qmq/kafka/': [
+                // {
+                //     title: '目录',
+                //     children: [
+                //         'Kafka生产者写入数据'
+                //     ]
+                // },
                 {
-                    title: '目录',
+                    title: '消息中间件',
                     children: [
-                        'Kafka生产者写入数据'
+                        'Kafka生产者写入数据',
+                        'Kafka消费者读取数据'
                     ]
                 }
             ]
