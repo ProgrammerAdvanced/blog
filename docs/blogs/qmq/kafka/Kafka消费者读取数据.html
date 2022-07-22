@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Kafka 消费者读取数据 | 程序员进阶</title>
+    <meta name="generator" content="VuePress 1.9.7">
+    <link rel="icon" href="/favicon.ico">
+    <meta name="description" content="祸兮福所依，福兮祸所伏">
+    <meta name="robots" content="all">
+    <meta name="author" content="zzx">
+    <meta name="keywords" content="Java 全栈知识体系, java体系, java知识体系, java框架,java详解,java学习路线,java spring, java面试, 知识体系, java技术体系, java编程, java编程指南,java开发体系, java开发,java教程,java,java数据结构, 算法, 开发基础">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    
+    <link rel="preload" href="/assets/css/0.styles.260df17e.css" as="style"><link rel="preload" href="/assets/js/app.a93f5e0e.js" as="script"><link rel="preload" href="/assets/js/2.a2fe3e69.js" as="script"><link rel="preload" href="/assets/js/7.91587bb6.js" as="script"><link rel="prefetch" href="/assets/js/3.11d9ef47.js"><link rel="prefetch" href="/assets/js/4.5144e0ac.js"><link rel="prefetch" href="/assets/js/5.a2adcb4f.js"><link rel="prefetch" href="/assets/js/6.7aff9ab2.js"><link rel="prefetch" href="/assets/js/8.b1dc67d7.js"><link rel="prefetch" href="/assets/js/9.5adfcbda.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.260df17e.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">程序员进阶</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/" class="nav-link">
+  首页
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="首页" class="dropdown-title"><span class="title">首页</span> <span class="arrow down"></span></button> <button type="button" aria-label="首页" class="mobile-dropdown-title"><span class="title">首页</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/" class="nav-link">
+  html
+</a></li><li class="dropdown-item"><!----> <a href="/" class="nav-link">
+  css
+</a></li></ul></div></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/" class="nav-link">
+  首页
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="首页" class="dropdown-title"><span class="title">首页</span> <span class="arrow down"></span></button> <button type="button" aria-label="首页" class="mobile-dropdown-title"><span class="title">首页</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/" class="nav-link">
+  html
+</a></li><li class="dropdown-item"><!----> <a href="/" class="nav-link">
+  css
+</a></li></ul></div></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading open"><span>目录</span> <span class="arrow down"></span></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/blogs/qmq/kafka/Kafka生产者写入数据.html" class="sidebar-link">Kafka 生产者写入数据</a></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><p>消费者不需要自行管理 offset（<em>分组+topic+分区</em>），系统通过 broker 将 offset 存放在本地。低版本通过 zk 自行管理。系统自行管理分区和副本情况。消费者断线后会自动根据上一次记录的 offset 去获取数据（默认一分钟更新一次 offset），同一个分组中的客户不能同时消费同一个分片。不同的 group 记录不同的 offset，这样不同程序读取同一个 topic 才不会因为 offset 互相影响。</p> <h2 id="一、消费者组"><a href="#一、消费者组" class="header-anchor">#</a> 一、消费者组</h2> <p><img src="/assets/img/offset.1749d5d0.png" alt="offset">
+分区的所有权从一个消费者转移到另一个消费者，这样的行为称为再均衡，再均衡非常重要，它为消费者群组带来了高可用性和伸缩性（可以放心的添加和删除消费者），再均衡期间消费者无法读取消息，造成整个群组一小段时间的不可用。另外，当分区被重新分配给另一个消费者时，消费者当前的读取状态会丢失，它有可能还需要去刷新缓存，在它重新恢复状态之前会拖慢应用程序。通过心跳机制检测消费者是否活跃。</p> <h2 id="二、消费方式"><a href="#二、消费方式" class="header-anchor">#</a> 二、消费方式</h2> <p>:::
+如果消费者提交了偏移量却未能处理完消息，那么就有可能造成消息丢失，这也是消费者丢失消息的主要原因。
+:::</p></div> <footer class="page-edit"><!----> <!----></footer> <!----> </main></div><div class="global-ui"></div></div>
+    <script src="/assets/js/app.a93f5e0e.js" defer></script><script src="/assets/js/2.a2fe3e69.js" defer></script><script src="/assets/js/7.91587bb6.js" defer></script>
+  </body>
+</html>
