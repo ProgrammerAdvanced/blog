@@ -85,12 +85,19 @@ module.exports = {
         // 右上目录
         nav: [
             { text: '首页', link: '/'},
-            { text: '首页', 
+            { text: '面试', link: '/blogs/interview/缓存'},
+            { text: '缓存', 
                 items: [
                     { text: 'html', link: '/'},
                     { text: 'css', link: '/'}
                 ]
-            }
+            },
+            { text: '消息中间件', 
+            items: [
+                { text: 'html', link: '/'},
+                { text: 'css', link: '/'}
+            ]
+        }
         ],
         // locales: {
         //     "/": {
