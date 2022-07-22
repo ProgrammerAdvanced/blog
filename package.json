@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "vuepress build",
-    "deploy": "bash deploy.sh"
+    "deploy": "bash deploy.sh",
+    "docs:build": "vuepress build docs"
   },
   "devDependencies": {
     "@vuepress-reco/vuepress-plugin-bgm-player": "^1.1.4",
