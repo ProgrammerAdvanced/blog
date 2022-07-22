@@ -1,13 +1,13 @@
 module.exports = {
+    title: '程序猿进阶',                 // 网站的标题，还会显示在导航栏的左上角
     // port: "3000",
-    // dest: "docs",
+    dest: 'docs/.vuepress/dist',        // 保存 vuepress build 构建结果的目录
     // ga: "UA-xxxxx-1",
-    base: "/",
+    base: "/",                          // 该 VuePress 网站监听的 URL 的起始路径，会成为以 / 开始的其它 URL 的前缀
     markdown: {
-        lineNumbers: true,
-        toc: {
-            includeLevel:[1, 2, 3, 4]
-        }
+        lineNumbers: true,              // 让代码块显示行号
+        extractHeaders: ['h2', 'h3'],   // 从 MarkDown 文档中提取哪几级标题，保存到 this.$page.headers
+        toc: { includeLevel: [2, 3] },  // MarkDown 文档中，用 [[toc]] 标签建立目录时，收集哪几级标题
         // externalLinks: {
         //     target: '_blank', rel: 'noopener noreferrer'
         // },
@@ -60,13 +60,12 @@ module.exports = {
         ['vuepress-plugin-baidu-autopush']
     ],
     themeConfig: {
-        repo: "ProgrammerAdvanced/blog",
-        docsRepo: "blogs",
-        // logo: "/logo.png",
-        // editLinks: true,
+        repo: "ProgrammerAdvanced/blog",    // 启用到 GitHub 仓库的链接，显示在页面右上角
+        docsRepo: "docs",                   // 使用 GitHub 仓库中哪个目录下的文档
+        // logo: "/logo.png",               // 网站 logo ，会显示在导航栏的左侧
+        // editLinks: true,                 // 启用快速编辑的链接，显示在文章末尾的左下角
         // sidebarDepth:0,
-        // 侧边栏
-        sidebar: {
+        sidebar: {                          // 侧边栏
             '/blogs/qmq/kafka/': [
                 // {
                 //     title: '目录',
