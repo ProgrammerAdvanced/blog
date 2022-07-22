@@ -1,7 +1,7 @@
 module.exports = {
-    port: "3000",
-    dest: "docs",
-    ga: "UA-xxxxx-1",
+    // port: "3000",
+    // dest: "docs",
+    // ga: "UA-xxxxx-1",
     base: "/",
     markdown: {
         lineNumbers: true,
@@ -60,8 +60,8 @@ module.exports = {
         ['vuepress-plugin-baidu-autopush']
     ],
     themeConfig: {
-        // repo: "realpdai/tech-arch-doc",
-        // docsRepo: "realpdai/tech-arch-doc",
+        repo: "ProgrammerAdvanced/blog",
+        docsRepo: "blogs",
         // logo: "/logo.png",
         // editLinks: true,
         // sidebarDepth:0,
