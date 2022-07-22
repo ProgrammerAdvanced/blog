@@ -60,7 +60,7 @@ module.exports = {
         ['vuepress-plugin-baidu-autopush']
     ],
     themeConfig: {
-        repo: "ProgrammerAdvanced/blog",    // 启用到 GitHub 仓库的链接，显示在页面右上角
+        // repo: "ProgrammerAdvanced/blog",    // 启用到 GitHub 仓库的链接，显示在页面右上角
         docsRepo: "docs",                   // 使用 GitHub 仓库中哪个目录下的文档
         // logo: "/logo.png",               // 网站 logo ，会显示在导航栏的左侧
         // editLinks: true,                 // 启用快速编辑的链接，显示在文章末尾的左下角

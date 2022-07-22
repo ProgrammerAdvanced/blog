@@ -10,5 +10,5 @@ features:
   details: 实践是程序员必备的技能。
 - title: 项目
   details: 将理论和实践带入项目，才能更好的发挥自身的价值。
-footer: © 2022-present pdai
+footer: © 2022-present IT-Blog
 ---
